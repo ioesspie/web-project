@@ -46,7 +46,7 @@ a:hover
 }
 .grid-footer
 {
-    grid-column: 1/4;
+    grid-column: 1 / -1;
     height: 50px;
     background-color: black;
     margin-top: 20px;
@@ -54,7 +54,7 @@ a:hover
 .header
 {
     display: flex;
-    grid-column:1/4;
+    grid-column: 1 / -1;
     height: 50px;
     margin-top: 10px;
     margin-bottom: 30px;
@@ -94,6 +94,7 @@ a:hover
 .wraper-grid-albums
 {
     width: 90%;
+    min-width: fit-content;
     height: fit-content;
     margin: 0 auto;
 }
@@ -104,11 +105,11 @@ a:hover
 .grid-albums
 {
     width: 100%;
+    min-width: fit-content;
     box-sizing: border-box;
-    grid-template-columns: auto auto auto;
-    
-    column-gap: 7vw;
-    justify-content: center;
+    grid-template-columns: repeat(3, minmax(270px, 1fr));
+    justify-items: center;
+    padding: 0 10px;
     background-color: rgba(37, 21, 19,0.35);
     border-radius: 30px;
     border-color: #150a08;
@@ -171,3 +172,10 @@ a:hover
     background-color:#ebd589;
 }
 
+@media (max-width: 950px) {
+
+}
+
+@media (max-width: 650px) {
+
+}
