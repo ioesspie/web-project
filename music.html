@@ -13,63 +13,111 @@
         <i class="fa-solid fa-record-vinyl gold-color"></i>
         <h1 class = 'font-doto h1-music-title'>Music Albums</h1>
     </div>
+    <div id="thriller-info" popover class="album-bubble">
+        <button type="button" class="bubble-close" popovertarget="thriller-info" popovertargetaction="hide" aria-label="Close">
+            <i class="fa-solid fa-xmark"></i>
+        </button>
+
+        <div class="bubble-content">
+            <div class="bubble-header">
+                <img class="bubble-cover" src="./images/thriller.jpeg" alt="Thriller - Michael Jackson">
+                <div class="bubble-info">
+                    <h2 class="bubble-title font-doto">Thriller</h2>
+                    <p class="bubble-artist">Michael Jackson</p>
+
+                    <div class="bubble-meta">
+                        <div><span class="meta-label">Release Date</span><span>November 30, 1982</span></div>
+                        <div><span class="meta-label">Producer</span><span>Quincy Jones, Michael Jackson</span></div>
+                        <div><span class="meta-label">Recording Studio</span><span>Westlake Recording Studios, LA</span></div>
+                        <div><span class="meta-label">Genre</span><span>Pop, Post-disco, Funk, R&amp;B, Rock</span></div>
+                        <div><span class="meta-label">Length</span><span>42:19</span></div>
+                        <div><span class="meta-label">Language</span><span>English</span></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bubble-section">
+                <h3 class="bubble-section-title font-doto">About</h3>
+                <p class="bubble-about">
+                    Thriller is Michael Jackson's sixth studio album and the best-selling album of all time.
+                    Blending pop, funk, rock, and R&amp;B, it won a record-breaking 8 Grammy Awards in 1984
+                    and reshaped modern music videos with iconic tracks like "Billie Jean", "Beat It", and "Thriller".
+                </p>
+            </div>
+
+            <div class="bubble-section">
+                <h3 class="bubble-section-title font-doto">Tracklist</h3>
+                <ol class="bubble-tracks">
+                    <li><span>Wanna Be Startin' Somethin'</span><span class="track-length">6:03</span></li>
+                    <li><span>Baby Be Mine</span><span class="track-length">4:20</span></li>
+                    <li><span>The Girl Is Mine (with Paul McCartney)</span><span class="track-length">3:42</span></li>
+                    <li><span>Thriller</span><span class="track-length">5:57</span></li>
+                    <li><span>Beat It</span><span class="track-length">4:18</span></li>
+                    <li><span>Billie Jean</span><span class="track-length">4:54</span></li>
+                    <li><span>Human Nature</span><span class="track-length">4:06</span></li>
+                    <li><span>P.Y.T. (Pretty Young Thing)</span><span class="track-length">3:59</span></li>
+                    <li><span>The Lady in My Life</span><span class="track-length">5:00</span></li>
+                </ol>
+            </div>
+        </div>
+    </div>
     <div class="wraper-grid-albums">
         <div class = "grid grid-albums">
             <div class = "header">
-                <a><div class = "font-doto header-button home-button"><div class ="flex flex-center"><h3>HOME</h3></div></div></a>
-                <a><div class = "font-doto header-button game-button"><div class ="flex flex-center"><h3>GAME</h3></div></div></a>
-                <a><div class = "font-doto header-button game-button"><div class ="flex flex-center"><h3>ABOUT</h3></div></div></a>
+                <a href = "music.html"><div class = "font-doto header-button home-button"><div class ="flex flex-center"><h3>HOME</h3></div></div></a>
+                <a href = "game.html"><div class = "font-doto header-button game-button"><div class ="flex flex-center"><h3>GAME</h3></div></div></a>
+                <a href = "about.html"><div class = "font-doto header-button game-button"><div class ="flex flex-center"><h3>ABOUT</h3></div></div></a>
                 <input type="text" placeholder="Search for albums, artists, songs...">
                 <div class = "search-icon"><i class="fa-solid fa-magnifying-glass"></i></div>
             </div>  
-            <div class = "album">
+            <button type="button" class="album" popovertarget="thriller-info">
                 <img src = "./images/thriller.jpeg" alt = "Thriller - Michael Jackson">
                 <h4 class = "font-doto">Thriller - Michael Jackson</h4>
-            </div>
-            <div class ="album">
-                <img src = "./images/Off_the_wall.jpg" alt = "Thriller - Michael Jackson">
+            </button>
+            <button type="button" class="album">
+                <img src = "./images/Off_the_wall.jpg" alt = "Off the Wall - Michael Jackson">
                 <h4 class = "font-doto">Off the Wall - Michael Jackson</h4>
-            </div>
-            <div class ="album">
-                <img src = "./images/Dangerous.jpg" alt = "Thriller - Michael Jackson">
+            </button>
+            <button type="button" class="album">
+                <img src = "./images/Dangerous.jpg" alt = "Dangerous - Michael Jackson">
                 <h4 class = "font-doto">Dangerous - Michael Jackson</h4>
-            </div>
-            <div class ="album">
-                <img src = "./images/bad.png" alt = "Thriller - Michael Jackson">
-                <h4 class = "font-doto">Bad - Michael Jackson</h4> 
-            </div>
-            <div class ="album">
-                <img src = "./images/invincible.jpeg" alt = "Thriller - Michael Jackson">
+            </button>
+            <button type="button" class="album">
+                <img src = "./images/bad.png" alt = "Bad - Michael Jackson">
+                <h4 class = "font-doto">Bad - Michael Jackson</h4>
+            </button>
+            <button type="button" class="album">
+                <img src = "./images/invincible.jpeg" alt = "Invincible - Michael Jackson">
                 <h4 class = "font-doto">Invincible - Michael Jackson</h4>
-            </div>
-            <div class ="album">
-                <img src = "./images/xScape.jpeg" alt = "Thriller - Michael Jackson">
+            </button>
+            <button type="button" class="album">
+                <img src = "./images/xScape.jpeg" alt = "xScape - Michael Jackson">
                 <h4 class = "font-doto">xScape - Michael Jackson</h4>
-            </div> 
-            <div class = "album">
-                <img src = "./images/history-mj.webp" alt = "Thriller - Michael Jackson">
+            </button>
+            <button type="button" class="album">
+                <img src = "./images/history-mj.webp" alt = "HIStory: Past, Present and Future, Book I - Michael Jackson">
                 <h4 class = "font-doto">HIStory: Past, Present and Future, Book I - Michael Jackson</h4>
-            </div>
-            <div class = "album">
-                <img src = "./images/hey-julio_iglesias.jpg" alt = "Thriller - Michael Jackson">
+            </button>
+            <button type="button" class="album">
+                <img src = "./images/hey-julio_iglesias.jpg" alt = "Hey - Julio Iglesias">
                 <h4 class = "font-doto">Hey - Julio Iglesias</h4>
-            </div>
-            <div class = "album">
-                <img src = "./images/songs-about-jane.jpg" alt = "Thriller - Michael Jackson">
+            </button>
+            <button type="button" class="album">
+                <img src = "./images/songs-about-jane.jpg" alt = "Songs About Jane - Maroon 5">
                 <h4 class = "font-doto">Songs About Jane - Maroon 5</h4>
-            </div>
-            <div class = "album">
-                <img src = "./images/overexposed.jpeg" alt = "Thriller - Michael Jackson">
+            </button>
+            <button type="button" class="album">
+                <img src = "./images/overexposed.jpeg" alt = "Overexposed - Maroon 5">
                 <h4 class = "font-doto">Overexposed - Maroon 5</h4>
-            </div>
-            <div class = "album">
-                <img src = "./images/it-wont-be-soon-before-late.jpg"    alt = "Thriller - Michael Jackson">
+            </button>
+            <button type="button" class="album">
+                <img src = "./images/it-wont-be-soon-before-late.jpg" alt = "It Won't Be Soon Before Long - Maroon 5">
                 <h4 class = "font-doto">It Won't Be Soon Before Long - Maroon 5</h4>
-            </div>
-            <div class = "album">
-                <img src = "./images/V.jpeg" alt = "Thriller - Michael Jackson">
+            </button>
+            <button type="button" class="album">
+                <img src = "./images/V.jpeg" alt = "V - Maroon 5">
                 <h4 class = "font-doto">V - Maroon 5</h4>
-            </div>
+            </button>
             <div class = "grid-footer flex flex-center"><p style="color:white;">1 2 3 4 ... 100</p></div>
         </div>
     </div>

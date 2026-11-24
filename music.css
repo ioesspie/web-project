@@ -8,19 +8,31 @@ html
 }
 body
 {
+    margin: 0;
     background-repeat: no-repeat;
     background-size: cover;
     min-height: 100vh;
     background-image: radial-gradient(circle, #291c18,#100b0a);
 }
+.header a{
+    text-decoration: none;
+}
+.header a:visited{
+    color:black;
+}
 .header a
 {
     margin-right: 10px;
     background-color: white;
+    border-width: 2px;
+    border-style: solid;
+    color:black;
 }
 a:hover
 {
     background-color: #b8b8b8;
+    border-color: #b28b12;
+
     cursor: pointer;
 }
 .header-button
@@ -53,12 +65,13 @@ a:hover
 }
 .header
 {
+    justify-self:normal;
     display: flex;
     grid-column: 1 / -1;
     height: 50px;
     margin-top: 10px;
     margin-bottom: 30px;
-    padding: 0 10px;
+    padding: 0 max(0px, calc((100% / var(--cols) - 250px) / 2));
     box-sizing: border-box;
 }
 .search-icon
@@ -72,7 +85,7 @@ a:hover
     padding-left: 16px;
     padding-right: 16px;
     border-radius: 100%;
-    border-color: #b28b12;
+    border-color: transparent;
     border-style: solid;
     border-width: 2px;
     background-color: white;
@@ -80,21 +93,25 @@ a:hover
 .search-icon:hover
 {
     background-color:#b8b8b8;
+    border-color: #b28b12;
     cursor: pointer;
 }
 .header input
 {
     margin-left: auto;
-    border-color: #b28b12;
+    border-color:transparent;
     border-radius:20px;
-    border-width: 2px;
+    border-width: 2.5px;
     border-style: solid;
     width:20vw;
+}
+.header input:hover
+{
+    border-color: #b28b12;
 }
 .wraper-grid-albums
 {
     width: 90%;
-    min-width: fit-content;
     height: fit-content;
     margin: 0 auto;
 }
@@ -104,10 +121,10 @@ a:hover
 }
 .grid-albums
 {
+    --cols: 1;
     width: 100%;
-    min-width: fit-content;
     box-sizing: border-box;
-    grid-template-columns: repeat(3, minmax(270px, 1fr));
+    grid-template-columns: repeat(var(--cols), minmax(0, 1fr));
     justify-items: center;
     padding: 0 10px;
     background-color: rgba(37, 21, 19,0.35);
@@ -145,10 +162,36 @@ a:hover
 }
 .album
 {
+    position: relative;
     margin: 10px;
-    width: 250px;
+    padding: 0;
+    font: inherit;
+    width: min(250px, calc(100% - 20px));
     min-height: 250px;
     background-color: transparent;
+    border: 2px solid transparent;
+    border-radius: 8px;
+    transform: perspective(800px) translate(0px, 0px) rotateX(0deg) rotateY(0deg) scale(1);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1),
+                box-shadow 0.35s ease,
+                border-color 0.3s ease;
+}
+.album:nth-child(5n + 1) { --tx: -6px; --ty: -10px; --rx: 7deg;  --ry: -6deg; }
+.album:nth-child(5n + 2) { --tx: 6px;  --ty: -10px; --rx: 7deg;  --ry: 6deg;  }
+.album:nth-child(5n + 3) { --tx: 6px;  --ty: 6px;   --rx: -6deg; --ry: 7deg;  }
+.album:nth-child(5n + 4) { --tx: -6px; --ty: 6px;   --rx: -6deg; --ry: -7deg; }
+.album:nth-child(5n + 5) { --tx: 0px;  --ty: -12px; --rx: -7deg; --ry: 3deg;  }
+.album:hover
+{
+    z-index: 10;
+    border-color: #b28b12;
+    transform: perspective(800px) translate(var(--tx), var(--ty)) rotateX(var(--rx)) rotateY(var(--ry)) scale(1.08);
+    box-shadow: 0 22px 35px rgba(0, 0, 0, 0.75), 0 0 18px rgba(178, 139, 18, 0.35);
+    cursor: pointer;
+}
+.album:hover img{
+    border-radius: 6px;
 }
 .album img
 {
@@ -168,14 +211,295 @@ a:hover
 {
     margin-top: 100px;
     width: 100%;
-    height: 100px;
+    min-height: 100px;
+    padding: 12px 16px;
+    box-sizing: border-box;
     background-color:#ebd589;
 }
 
-@media (max-width: 950px) {
 
+
+/* Album info bubble (reusable for single-bubble JS version) */
+.album-bubble
+{
+    position: fixed;
+    margin: auto;
+    width: min(90vw, 800px);
+    max-height: 85vh;
+    overflow-y:auto;
+    padding: 28px;
+    box-sizing: border-box;
+    border-radius: 24px;
+    border: 2px solid #b28b12;
+    background: radial-gradient(circle at top left, #2d1e19, #120c0b);
+    color: #f5efe6;
+    font-family: 'Outfit', sans-serif;
+    box-shadow: 0 25px 60px rgba(0, 0, 0, 0.85), 0 0 24px rgba(178, 139, 18, 0.25);
+}
+
+.album-bubble::backdrop
+{
+    background: rgba(10, 6, 5, 0.78);
+    backdrop-filter: blur(6px);
+}
+
+.bubble-close
+{
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    border: 2px solid #b28b12;
+    background-color: rgba(16, 11, 10, 0.85);
+    color: #ebd589;
+    font-size: 16px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    transition: background-color 0.2s ease, color 0.2s ease, transform 0.2s ease;
+}
+
+.bubble-close:hover
+{
+    background-color: #ebd589;
+    color: #100b0a;
+    transform: scale(1.08);
+}
+
+.bubble-content
+{
+    display: flex;
+    flex-direction: column;
+    gap: 22px;
+}
+
+.bubble-header
+{
+    display: flex;
+    gap: 24px;
+    align-items: flex-start;
+}
+
+.bubble-cover
+{
+    width: 220px;
+    height: 220px;
+    object-fit: cover;
+    border-radius: 12px;
+    border: 2px solid #b28b12;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.6);
+    align-self: center;
+    flex-shrink: 0;
+}
+
+.bubble-info
+{
+    flex: 1;
+    padding-right: 32px;
+}
+
+.bubble-title
+{
+    margin: 0;
+    font-size: 36px;
+    background: linear-gradient(to right, #ebd589, #b28b12);
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
+}
+
+.bubble-artist
+{
+    margin: 4px 0 16px;
+    font-size: 18px;
+    color: #d6c5b3;
+    font-weight: 600;
+}
+
+.bubble-meta
+{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px 18px;
+    padding: 14px;
+    border-radius: 12px;
+    background-color: rgba(16, 11, 10, 0.55);
+    border: 1px solid rgba(178, 139, 18, 0.35);
+    font-size: 14px;
+}
+
+.bubble-meta > div
+{
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.meta-label
+{
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: #ebd589;
+    font-weight: 600;
+}
+
+.bubble-section-title
+{
+    margin: 0 0 10px;
+    font-size: 20px;
+    color: #ebd589;
+    border-bottom: 1px solid rgba(178, 139, 18, 0.35);
+    padding-bottom: 6px;
+}
+
+.bubble-about
+{
+    margin: 0;
+    line-height: 1.6;
+    color: #e6dcd1;
+    font-size: 15px;
+}
+
+.bubble-tracks
+{
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    counter-reset: track;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.bubble-tracks li
+{
+    counter-increment: track;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 6px 10px;
+    border-radius: 8px;
+    background-color: rgba(16, 11, 10, 0.4);
+    font-size: 14px;
+}
+
+.bubble-tracks li::before
+{
+    content: counter(track) ".";
+    color: #ebd589;
+    font-weight: 600;
+    min-width: 22px;
+}
+
+.bubble-tracks li:hover
+{
+    background-color: rgba(178, 139, 18, 0.18);
+}
+
+.track-length
+{
+    margin-left: auto;
+    color: #ebd589;
+    font-variant-numeric: tabular-nums;
 }
 
 @media (max-width: 650px) {
+    .bubble-header
+    {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
 
+    .bubble-info
+    {
+        padding-right: 0;
+        width: 100%;
+    }
+
+    .bubble-meta
+    {
+        grid-template-columns: 1fr;
+        text-align: left;
+    }
+}
+@media (min-width: 640px) {
+    .grid-albums
+    {
+        --cols: 2;
+    }
+}
+@media (min-width: 940px) { /* so without screen it applies to both screen and printer */
+    .grid-albums
+    {
+        --cols: 3;
+    }
+}
+@media (max-width: 639px) {
+    .header
+    {
+        flex-wrap: wrap;
+        height: auto;
+        justify-content: center;
+        row-gap: 10px;
+        column-gap: 8px;
+        padding: 0 6px;
+    }
+
+    .header a
+    {
+        margin-right: 0;
+        height: 44px;
+        flex: 1 1 60px;
+        max-width: 100px;
+        box-sizing: border-box;
+    }
+
+    .header-button
+    {
+        width: 100%;
+    }
+
+    .header input
+    {
+        margin-left: 0;
+        width: auto;
+        flex: 1 1 calc(100% - 48px);
+        min-width: 0;
+        height: 40px;
+        padding: 0 12px;
+        box-sizing: border-box;
+    }
+
+    .search-icon
+    {
+        margin-left: 0;
+        width: 40px;
+        height: 40px;
+        padding: 0;
+        box-sizing: border-box;
+        flex-shrink: 0;
+    }
+}
+@media (max-width : 604px){
+    .h1-music-title
+    {
+        font-size: 50px;
+    }
+}
+@media (max-width : 433px){
+    .h1-music-title
+    {
+        font-size: clamp(26px, 10vw, 40px);
+    }
+
+    .gold-color
+    {
+        font-size: clamp(24px, 7vw, 37px);
+        margin-right: 10px;
+    }
 }

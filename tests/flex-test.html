@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flexbox Shrink &amp; Basis Test</title>
+    <link rel="stylesheet" href="flex-test.css">
+</head>
+<body>
+    <h1>Flexbox: flex-shrink &amp; flex-basis Demo</h1>
+    <div class="controls">
+        <label for="width-slider">Container width: <strong id="width-value">340px</strong></label>
+        <input id="width-slider" type="range" min="200" max="650" value="340">
+    </div>
+
+    <!-- 1. flex-shrink: 1 vs flex-shrink: 0 -->
+    <section>
+        <h2>1. Two 220px boxes inside a 340px container (total needed: 440px)</h2>
+
+        <p class="label">Both have <code>flex-shrink: 1</code> (default) &rarr; both squish to 170px:</p>
+        <div class="container">
+            <div class="box shrink-1">Box A (220px, shrink: 1)</div>
+            <div class="box shrink-1 alt">Box B (220px, shrink: 1)</div>
+        </div>
+
+        <p class="label">Box A has <code>flex-shrink: 0</code> &rarr; Box A stays 220px, Box B shrinks to 120px:</p>
+        <div class="container">
+            <div class="box shrink-0">Box A (220px, shrink: 0)</div>
+            <div class="box shrink-1 alt">Box B (220px, shrink: 1)</div>
+        </div>
+    </section>
+
+    <!-- 2. flex-basis vs flex: 1 -->
+    <section>
+        <h2>2. What <code>flex: 1</code> actually does</h2>
+        <p class="label"><code>flex: 1</code> = <code>flex-grow: 1; flex-shrink: 1; flex-basis: 0%;</code></p>
+        <div class="container wide">
+            <div class="box cover-like">220px, flex-shrink: 0</div>
+            <div class="box info-like">flex: 1 (grows/shrinks to fill remaining space)</div>
+        </div>
+    </section>
+
+    <script>
+        const slider = document.getElementById('width-slider');
+        const valueLabel = document.getElementById('width-value');
+        const containers = document.querySelectorAll('.container');
+
+        slider.addEventListener('input', () => {
+            const w = slider.value + 'px';
+            valueLabel.textContent = w;
+            containers.forEach(c => c.style.width = w);
+        });
+    </script>
+</body>
+</html>
