@@ -3,23 +3,24 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel = "stylesheet" href = "music.css">
+    <link rel="stylesheet" href="main.css">
+    <link rel="stylesheet" href="music.css">
     <link href="https://fonts.googleapis.com/css2?family=Special+Elite&family=Outfit:wght@300;400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <title>Document</title>
 </head>
 <body>
-    <div class = "flex flex-center">
+    <header class = "flex flex-center">
         <i class="fa-solid fa-record-vinyl gold-color"></i>
-        <h1 class = 'font-doto h1-music-title'>Music Albums</h1>
-    </div>
-    <div id="thriller-info" popover class="album-bubble">
+        <h1 class = 'font-doto h1-music-title' aria-label="Music Albums"><span aria-hidden="true">M</span><span aria-hidden="true">u</span><span aria-hidden="true">s</span><span aria-hidden="true">i</span><span aria-hidden="true">c</span> <span aria-hidden="true">A</span><span aria-hidden="true">l</span><span aria-hidden="true">b</span><span aria-hidden="true">u</span><span aria-hidden="true">m</span><span aria-hidden="true">s</span></h1>
+    </header>
+    <article id="thriller-info" popover class="album-bubble">
         <button type="button" class="bubble-close" popovertarget="thriller-info" popovertargetaction="hide" aria-label="Close">
             <i class="fa-solid fa-xmark"></i>
         </button>
 
         <div class="bubble-content">
-            <div class="bubble-header">
+            <header class="bubble-header">
                 <img class="bubble-cover" src="./images/thriller.jpeg" alt="Thriller - Michael Jackson">
                 <div class="bubble-info">
                     <h2 class="bubble-title font-doto">Thriller</h2>
@@ -34,18 +35,18 @@
                         <div><span class="meta-label">Language</span><span>English</span></div>
                     </div>
                 </div>
-            </div>
+            </header>
 
-            <div class="bubble-section">
+            <section class="bubble-section">
                 <h3 class="bubble-section-title font-doto">About</h3>
                 <p class="bubble-about">
                     Thriller is Michael Jackson's sixth studio album and the best-selling album of all time.
                     Blending pop, funk, rock, and R&amp;B, it won a record-breaking 8 Grammy Awards in 1984
                     and reshaped modern music videos with iconic tracks like "Billie Jean", "Beat It", and "Thriller".
                 </p>
-            </div>
+            </section>
 
-            <div class="bubble-section">
+            <section class="bubble-section">
                 <h3 class="bubble-section-title font-doto">Tracklist</h3>
                 <ol class="bubble-tracks">
                     <li><span>Wanna Be Startin' Somethin'</span><span class="track-length">6:03</span></li>
@@ -58,18 +59,26 @@
                     <li><span>P.Y.T. (Pretty Young Thing)</span><span class="track-length">3:59</span></li>
                     <li><span>The Lady in My Life</span><span class="track-length">5:00</span></li>
                 </ol>
-            </div>
+            </section>
         </div>
-    </div>
-    <div class="wraper-grid-albums">
+    </article>
+    <main class="wraper-grid-albums">
         <div class = "grid grid-albums">
-            <div class = "header">
-                <a href = "music.html"><div class = "font-doto header-button home-button"><div class ="flex flex-center"><h3>HOME</h3></div></div></a>
-                <a href = "game.html"><div class = "font-doto header-button game-button"><div class ="flex flex-center"><h3>GAME</h3></div></div></a>
-                <a href = "about.html"><div class = "font-doto header-button game-button"><div class ="flex flex-center"><h3>ABOUT</h3></div></div></a>
+            <nav class = "header" aria-label="Main navigation">
+                <input type="checkbox" id="menu-toggle" aria-label="Toggle navigation menu">
+                <label for="menu-toggle" class="burger-btn" title="Toggle menu">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </label>
+                <div class="nav-links">
+                    <a href = "music.html"><div class = "font-doto header-button home-button"><div class ="flex flex-center"><h3>HOME</h3></div></div></a>
+                    <a href = "game.html"><div class = "font-doto header-button game-button"><div class ="flex flex-center"><h3>GAME</h3></div></div></a>
+                    <a href = "about.html"><div class = "font-doto header-button game-button"><div class ="flex flex-center"><h3>ABOUT</h3></div></div></a>
+                </div>
                 <input type="text" placeholder="Search for albums, artists, songs...">
                 <div class = "search-icon"><i class="fa-solid fa-magnifying-glass"></i></div>
-            </div>  
+            </nav>  
             <button type="button" class="album" popovertarget="thriller-info">
                 <img src = "./images/thriller.jpeg" alt = "Thriller - Michael Jackson">
                 <h4 class = "font-doto">Thriller - Michael Jackson</h4>
@@ -133,10 +142,10 @@
                 </button>
             </nav>
         </div>
-    </div>
-    <div class = "footer">
+    </main>
+    <footer class = "footer">
         <h3 style="display: inline;">Made by Iancu-Victor Jelea</h3> <h5 style="display: inline; margin-left: 100px;">check him out on <a href = "https://www.iancujelea.com">iancujelea.com</a></h5>
         <h4>For WebTechniques project</h4>
-    </div>
+    </footer>
 </body>
 </html>
