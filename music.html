@@ -118,7 +118,20 @@
                 <img src = "./images/V.jpeg" alt = "V - Maroon 5">
                 <h4 class = "font-doto">V - Maroon 5</h4>
             </button>
-            <div class = "grid-footer flex flex-center"><p style="color:white;">1 2 3 4 ... 100</p></div>
+            <nav class="grid-footer" aria-label="Album pages">
+                <button type="button" class="page-btn page-arrow" disabled aria-label="Previous page">
+                    <i class="fa-solid fa-chevron-left"></i>
+                </button>
+                <button type="button" class="page-btn font-doto active" aria-current="page">1</button>
+                <button type="button" class="page-btn font-doto">2</button>
+                <button type="button" class="page-btn font-doto">3</button>
+                <button type="button" class="page-btn font-doto">4</button>
+                <span class="page-ellipsis font-doto" aria-hidden="true">...</span>
+                <button type="button" class="page-btn font-doto">100</button>
+                <button type="button" class="page-btn page-arrow" aria-label="Next page">
+                    <i class="fa-solid fa-chevron-right"></i>
+                </button>
+            </nav>
         </div>
     </div>
     <div class = "footer">
